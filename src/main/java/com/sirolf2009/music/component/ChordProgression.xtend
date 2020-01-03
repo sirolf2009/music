@@ -29,6 +29,7 @@ import jm.util.View
 import javafx.stage.Stage
 import javafx.scene.Scene
 import javafx.scene.layout.BorderPane
+import com.sirolf2009.music.StickyAnchorPane
 
 /**
  * 
@@ -161,7 +162,7 @@ class ChordProgression extends MigPane {
 				val part = new Part(phrase)
 				Play.midi(new Score(part), false, false, 10, 0)
 				new Stage() => [
-					setScene(new Scene(new BorderPane(new PianoRollView(part))))
+					setScene(new Scene(new StickyAnchorPane(new PianoRollView(part))))
 					show()
 				]
 			]

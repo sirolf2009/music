@@ -3,8 +3,9 @@ package com.sirolf2009.music
 import animatefx.animation.FadeInUp
 import animatefx.animation.FadeOutDown
 import com.sirolf2009.music.component.Beat
-import com.sirolf2009.music.component.ChordDesigner
 import com.sirolf2009.music.component.ChordProgression
+import com.sirolf2009.music.component.PianoRollView
+import com.sirolf2009.music.lyrics.Rappad
 import javafx.application.Application
 import javafx.geometry.Pos
 import javafx.scene.Scene
@@ -23,6 +24,8 @@ import org.dockfx.DockNode
 import org.dockfx.DockPane
 import org.dockfx.DockPos
 import org.tbee.javafx.scene.layout.MigPane
+import com.sirolf2009.music.component.MetaphorGenerator
+import com.sirolf2009.music.component.Piano
 
 class Music extends Application {
 
@@ -35,7 +38,12 @@ class Music extends Application {
 	 */
 	
 	val components = #{
-		"beat" -> [new Beat()]
+		"beat" -> [new Beat()],
+		"chord progression" -> [new ChordProgression()],
+		"piano" -> [new Piano()],
+		"piano roll" -> [new PianoRollView()],
+		"rap pad" -> [new Rappad()],
+		"metaphor" -> [new MetaphorGenerator()]
 	}
 	
 	var StackPane root
@@ -96,9 +104,11 @@ class Music extends Application {
 		primaryStage.setTitle("Music | sirolf2009")
 		primaryStage.show()
 		
-		new DockNode(new ChordDesigner(), "Chord Designer").dock(dockPane, DockPos.LEFT)
-		new DockNode(new Beat(), "Beat").dock(dockPane, DockPos.RIGHT)
-		new DockNode(new ChordProgression(), "Chord Progression").dock(dockPane, DockPos.BOTTOM)
+		new DockNode(new Rappad(), "Rap Pad").dock(dockPane, DockPos.TOP)
+		new DockNode(new MetaphorGenerator(), "Metaphor").dock(dockPane, DockPos.BOTTOM)
+//		new DockNode(new Beat(), "Beat").dock(dockPane, DockPos.RIGHT)
+//		new DockNode(new ChordProgression(), "Chord Progression").dock(dockPane, DockPos.BOTTOM)
+//		new DockNode(new PianoRollView(), "Piano!").dock(dockPane, DockPos.TOP)
 //		new DockNode(new Piano(), "Piano").dock(dockPane, DockPos.TOP)
 	}
 

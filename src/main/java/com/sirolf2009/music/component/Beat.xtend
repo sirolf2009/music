@@ -15,6 +15,7 @@ import org.tbee.javafx.scene.layout.MigPane
 
 import static jm.constants.Durations.*
 import static jm.constants.Pitches.*
+import jm.constants.Instruments
 
 class Beat extends MigPane implements IPartProvider {
 
@@ -28,7 +29,7 @@ class Beat extends MigPane implements IPartProvider {
 		kick = new Phrase("Kick", 0)
 		beat = new Phrase("Beat", 0)
 		snare = new Phrase("Snare", 0)
-		drums = new Part("Drums", 25, 9)
+		drums = new Part("Drums", Instruments.DRUM)
 		#[kick, beat, snare].forEach [
 			addNoteList((0 ..< 16).map[REST], SIXTEENTH_NOTE)
 		]
@@ -49,6 +50,7 @@ class Beat extends MigPane implements IPartProvider {
 
 		add(new Button("Play") => [
 			setOnAction [
+//				Play.audio(drums, #[new com.sirolf2009.music.SineInst(44100), new com.sirolf2009.music.SineInst(44100), new com.sirolf2009.music.SineInst(44100)])
 				executor.submit[Play.midi(new Score(drums), false, false, 10, 0)]
 			]
 		], "split 2")
